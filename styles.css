@@ -156,8 +156,6 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid 
 .admin-message.success,#result.success{background:var(--success-soft);border-color:rgba(15,138,79,0.25);color:#0a5c34}
 .admin-message.error,#result.error{background:var(--danger-soft);border-color:rgba(192,49,43,0.25);color:#8c241f}
 
-.page-footer{margin-top:26px;text-align:center;color:var(--muted);font-size:.84rem}
-
 @media(max-width:760px){
   .page-shell{padding:18px 14px}
   .topbar{padding:22px}
