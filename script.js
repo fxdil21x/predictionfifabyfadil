@@ -85,6 +85,12 @@ function formatScore(b, j) {
   return `${b} - ${j}`;
 }
 
+function predictedWinnerLabel(b, j) {
+  if (b > j) return 'Brazil';
+  if (j > b) return 'Japan';
+  return 'Draw';
+}
+
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, ch => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -341,7 +347,7 @@ function renderPredictionsList(matchData, predictions) {
         <span class="rank">${escapeHtml(initials(displayName))}</span>
         <div class="list-item-text">
           <strong>${escapeHtml(displayName)}</strong>
-          <span>${pred.chosenScore} &middot; ${escapeHtml(pred.userEmail)}</span>
+          <span>${pred.chosenScore} (${predictedWinnerLabel(pred.predictedBrazil, pred.predictedJapan)}) &middot; ${escapeHtml(pred.userEmail)}</span>
         </div>
       </div>
       <div class="list-item-actions">
