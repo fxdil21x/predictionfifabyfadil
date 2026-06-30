@@ -60,6 +60,9 @@ const summaryBlock = document.getElementById('summary');
 const predictionsListEl = document.getElementById('predictionsList');
 const winnersTabBtn = document.getElementById('winnersTabBtn');
 const allTabBtn = document.getElementById('allTabBtn');
+const pickCountInput = document.getElementById('pickCount');
+const pickWinnersBtn = document.getElementById('pickWinnersBtn');
+const pickerResult = document.getElementById('pickerResult');
 
 const signedOutNotice = document.getElementById('signedOutNotice');
 const predictionsClosedNotice = document.getElementById('predictionsClosedNotice');
@@ -380,6 +383,38 @@ predictionsListEl.addEventListener('click', event => {
   if (!button) return;
   deletePrediction(button.dataset.id, button);
 });
+
+// --- Admin: random winner picker ---
+
+function pickRandomWinners() {
+  const winners = currentPredictions.filter(pred => isExactMatch(pred, currentMatch));
+
+  if (!winners.length) {
+    pickerResult.style.display = 'block';
+    pickerResult.innerHTML = '<p>There are no winners to pick from yet.</p>';
+    return;
+  }
+
+  let count = parseInt(pickCountInput.value || 1, 10);
+  if (!Number.isFinite(count) || count < 1) count = 1;
+  if (count > winners.length) count = winners.length;
+  pickCountInput.value = count;
+
+  const pool = [...winners];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  const picked = pool.slice(0, count);
+
+  pickerResult.style.display = 'block';
+  pickerResult.innerHTML = `
+    <p><strong>${picked.length === 1 ? 'Selected winner:' : `Selected ${picked.length} winners:`}</strong></p>
+    ${picked.map((pred, i) => `<p>${i + 1}. ${escapeHtml(pred.userName || pred.userEmail)} &middot; ${pred.chosenScore} &middot; ${escapeHtml(pred.userEmail)}</p>`).join('')}
+  `;
+}
+
+pickWinnersBtn.addEventListener('click', pickRandomWinners);
 
 function setAdminUI(isAdmin) {
   adminBadge.style.display = isAdmin ? 'inline-flex' : 'none';

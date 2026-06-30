@@ -63,6 +63,7 @@ Admin behavior
 - **Official result** starts in a read-only view with a "Set official result" / "Edit official result" button. Clicking it reveals the Brazil/Japan goal inputs (pre-filled with the current value when editing) plus "Save official result" and "Cancel". Saving returns to the read-only view.
 - **Predictions status** toggle ("Close predictions" / "Reopen predictions") lets the admin stop new submissions once the match starts — signed-in users who haven't yet submitted see "Predictions are closed" instead of the form; anyone who already submitted keeps seeing their own locked entry.
 - **Leaderboard** has two tabs: **Winners** (default) shows only entries whose predicted score is an *exact* match to the official score; **All predictions** shows every submitted entry. Both tabs have a "Delete" button per entry for admin cleanup.
+- **Random winner picker** at the bottom of the Leaderboard card draws N random entries from the Winners pool (not all predictions) — enter how many to pick and click "Pick random winner(s)". The count is clamped to however many winners actually exist.
 
 Code changes
 - The app shows `Sign in with Google` and `Sign out` buttons; users must sign in to submit a prediction.

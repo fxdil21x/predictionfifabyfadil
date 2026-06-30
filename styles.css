@@ -148,6 +148,13 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid 
 .admin-controls .row-wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
 .admin-divider{height:1px;background:var(--border);margin:20px 0}
 .prediction-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.picker-row{display:flex;gap:10px}
+.picker-row input{
+  width:84px;flex:none;padding:13px 12px;border-radius:12px;border:1px solid rgba(16,42,67,0.16);
+  background:#fff;color:var(--ink);font-weight:700;font-size:1.05rem;text-align:center;
+}
+.picker-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,75,165,0.12)}
+.picker-row .btn{flex:1}
 .admin-message,#result{
   margin-top:4px;padding:13px 16px;border-radius:12px;font-size:.92rem;line-height:1.5;
   background:#f7fbff;border:1px solid #dbeafe;color:#0f172a;display:none;
